@@ -90,6 +90,19 @@ then
         echo "Looking for an update"
         sudo npm i -g npm
     fi
+
+  # Checking JDK
+    echo "Checking for JDK"
+    java -version
+    if [ $? != 0 ]
+    then
+        echo "Installing JDK"
+        sudo apt-get install openjdk-8-jdk openjdk-8-jre
+        export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+
+    else
+        echo "JDK was already installed"
+    fi
     
     # Installing Bower
     
